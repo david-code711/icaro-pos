@@ -11,6 +11,7 @@ distro==1.9.0
 et_xmlfile==2.0.0
 Flask==3.1.2
 fonttools==4.61.1
+gunicorn
 google-ai-generativelanguage==0.6.15
 google-api-core==2.28.1
 google-api-python-client==2.187.0
