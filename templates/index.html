@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Lista de Productos</h2>
+
+<form method="POST">
+    <input name="query" placeholder="Buscar por nombre o código" value="{{ query }}">
+    <button type="submit">Filtrar</button>
+</form>
+
+<br>
+
+<table>
+    <tr>
+        <th>Barcode</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for row in table %}
+    <tr>
+        <td>{{ row.Barcode }}</td>
+        <td>{{ row.Name }}</td>
+        <td>{{ row.Price }}</td>
+        <td>
+            <a href="/modify/{{ row.Barcode }}">Modificar</a>
+            <a href="/delete/{{ row.Barcode }}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

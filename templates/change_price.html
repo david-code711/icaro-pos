@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Cambiar precio</h1>
+
+<div class="card">
+    <form method="POST">
+        <label>Nuevo precio para {{ product.Name }}</label>
+        <input name="price" type="number" step="0.01" value="{{ product.Price }}">
+        <button>Guardar</button>
+    </form>
+</div>
+
+{% endblock %}

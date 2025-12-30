@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Modificar producto</h1>
+
+<div class="card">
+    <form method="POST">
+        <label>Nombre</label>
+        <input name="name" value="{{ product.Name }}">
+
+        <label>Precio</label>
+        <input name="price" type="number" step="0.01" value="{{ product.Price }}">
+
+        <button>Guardar cambios</button>
+    </form>
+</div>
+
+{% endblock %}

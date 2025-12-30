@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title if title else "POS" }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<!--    
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+-->
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2 class="logo">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" 
+                 alt="ÍCAROS" 
+                 style="width:140px; display:block; margin:auto; margin-bottom:20px;">
+        </h2>
+        <nav>
+            <a href="/" class="nav-item">🏠 Home</a>
+            <a href="/ventas" class="nav-item">🛒 Ventas</a>
+            <a href="/almacen" class="nav-item">📦 Almacén</a>
+            <a href="/chat" class="nav-item">🤖 Asistente ÍCAROS</a>
+            <a href="/empresa" class="nav-item">Información de ÍCAROS</a>
+        </nav>
+    </aside>
+
+    <!-- CONTENIDO -->
+    <main class="content">
+        <div style="text-align:right; margin-bottom:20px;">
+             <img src="{{ url_for('static', filename='img/logo.png') }}" 
+                  alt="ÍCAROS" 
+                  style="height:40px; opacity:0.8;">
+        </div>
+         {% block content %}{% endblock %}
+    </main>
+
+</body>
+</html>

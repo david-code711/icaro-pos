@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card" style="max-width:420px; margin:auto; padding:30px; background:white;">
+
+    <!-- LOGO -->
+    <div style="text-align:center; margin-bottom:15px;">
+        <img src="{{ url_for('static', filename='img/logo.png') }}"
+             alt="ÍCAROS"
+             style="width:120px;">
+    </div>
+
+    <!-- TÍTULO -->
+    <h2 style="text-align:center; margin:0; color:#f26b4f; font-weight:600;">
+        TICKET DE COMPRA
+    </h2>
+
+    <p style="text-align:center; margin:5px 0 20px 0; font-size:14px; color:#555;">
+        Gracias por su compra
+    </p>
+
+    <hr style="border:none; border-top:1px solid #eee; margin:10px 0;">
+
+    <!-- PRODUCTOS -->
+    {% for item in ticket %}
+        <div style="display:flex; justify-content:space-between; font-size:16px;">
+            <span>{{ item.Name }}</span>
+            <span>{{ "%.2f"|format(item.Price * item.Qty) }} €</span>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; font-size:13px; color:#777; margin-bottom:8px;">
+            <span>x{{ item.Qty }} · {{ "%.2f"|format(item.Price) }} €/u</span>
+        </div>
+
+        <hr style="border:none; border-top:1px dashed #ddd; margin:8px 0;">
+    {% endfor %}
+
+    <!-- TOTAL -->
+    <div style="display:flex; justify-content:space-between; font-size:20px; font-weight:600; margin-top:20px;">
+        <span>Total</span>
+        <span>{{ "%.2f"|format(total) }} €</span>
+    </div>
+
+    <div style="text-align:center; margin-top:25px;">
+        <a href="/enviar_ticket">
+            <button style="width:100%;">Enviar ticket por correo</button>
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

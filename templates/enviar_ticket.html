@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Enviar ticket</h1>
+
+<div class="card">
+    <form method="POST">
+        <label>Correo electrónico del cliente</label>
+        <input name="email" type="email" placeholder="cliente@correo.com" required>
+
+        <button>Enviar ticket</button>
+    </form>
+</div>
+
+{% endblock %}

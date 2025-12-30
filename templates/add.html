@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Añadir producto</h1>
+
+<div class="card">
+    <form method="POST">
+        <label>Código de barras</label>
+        <input name="barcode">
+
+        <label>Nombre</label>
+        <input name="name">
+
+        <label>Precio</label>
+        <input name="price" type="number" step="0.01">
+
+        <button>Añadir</button>
+    </form>
+</div>
+
+{% endblock %}

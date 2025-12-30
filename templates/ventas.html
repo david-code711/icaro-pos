@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Ventas</h1>
+
+<div class="card">
+    <form method="POST">
+        <input name="barcode" placeholder="Escanear o escribir código de barras">
+        <button>Añadir</button>
+    </form>
+</div>
+
+<table>
+    <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Total</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for item in cart %}
+    <tr>
+        <td>{{ item.Barcode }}</td>
+        <td>{{ item.Name }}</td>
+        <td>{{ item.Price }}</td>
+        <td>{{ item.Qty }}</td>
+        <td>{{ item.Price * item.Qty }}</td>
+        <td>
+            <a href="/ventas/add_qty/{{ item.Barcode }}">➕</a>
+            <a href="/ventas/sub_qty/{{ item.Barcode }}">➖</a>
+            <a href="/ventas/change_price/{{ item.Barcode }}">✏️</a>
+            <a href="/ventas/remove/{{ item.Barcode }}">❌</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="total-box">
+    Total: {{ total }} €
+</div>
+
+<form method="POST" action="/finalizar">
+    <button style="margin-top:20px; background:#0a7;">Finalizar venta</button>
+</form>
+
+{% endblock %}

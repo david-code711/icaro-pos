@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Asistente ÍCAROS</h1>
+
+<div class="chat-container">
+
+    <div id="chat-box" class="chat-box">
+        {% for msg in messages %}
+            <div class="message {{ 'user' if msg.role == 'Usuario' else 'bot' }}">
+                <div class="bubble">
+                    {{ msg.content | safe }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <form method="POST" class="chat-input">
+        <input name="message" placeholder="Escribe tu mensaje..." required>
+        <button>Enviar</button>
+    </form>
+
+</div>
+
+<script>
+// Auto-scroll al final
+const chatBox = document.getElementById("chat-box");
+chatBox.scrollTop = chatBox.scrollHeight;
+</script>
+
+{% endblock %}

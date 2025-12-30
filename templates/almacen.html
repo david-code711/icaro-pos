@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Almacén</h1>
+
+<div class="card">
+    <form method="POST">
+        <input name="query" placeholder="Buscar por nombre o código..." value="{{ query }}">
+        <button>Filtrar</button>
+    </form>
+
+    <a href="/add"><button style="margin-top:10px;">Añadir producto</button></a>
+</div>
+
+<table>
+    <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for row in table %}
+    <tr>
+        <td>{{ row.Barcode }}</td>
+        <td>{{ row.Name }}</td>
+        <td>{{ row.Price }}</td>
+        <td>
+            <a href="/modify/{{ row.Barcode }}">Editar</a> |
+            <a href="/delete/{{ row.Barcode }}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Panel principal</h1>
+
+<!-- BUSCADOR RÁPIDO -->
+<div class="card">
+    <h2>Búsqueda rápida de productos</h2>
+
+    <form method="POST">
+        <input name="query" placeholder="Buscar por nombre o código..." value="{{ query }}">
+        <button>Buscar</button>
+    </form>
+
+    {% if resultados %}
+    <table style="margin-top:20px;">
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+        </tr>
+        {% for r in resultados %}
+        <tr>
+            <td>{{ r.Barcode }}</td>
+            <td>{{ r.Name }}</td>
+            <td>{{ r.Price }} €</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+
+
+<!-- RESUMEN DE VENTAS -->
+<div class="card">
+    <h2>Resumen del día</h2>
+
+    <p><strong>Total vendido hoy:</strong> {{ "%.2f"|format(ventas_hoy) }} €</p>
+    <p><strong>Número de líneas vendidas:</strong> {{ num_ventas }}</p>
+    <p><strong>Ticket medio:</strong> {{ "%.2f"|format(ticket_medio) }} €</p>
+</div>
+
+
+<!-- GRÁFICO -->
+<div class="card">
+    <h2>Ventas de la semana</h2>
+    <canvas id="grafico" height="120"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById('grafico');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: {{ fechas|tojson }},
+        datasets: [{
+            label: 'Ventas (€)',
+            data: {{ valores|tojson }},
+            borderColor: '#000',
+            backgroundColor: 'rgba(0,0,0,0.1)',
+            borderWidth: 2,
+            tension: 0.3
+        }]
+    },
+    options: {
+        scales: {
+            y: { beginAtZero: true }
+        }
+    }
+});
+</script>
+
+<!-- CONTACTO -->
+<div class="info-home">
+    <h3>ÍCAROS POS</h3>
+    <p>Sistema de punto de venta moderno y eficiente.</p>
+    <a href="/empresa" class="info-link">Ver información de la empresa</a>
+</div>
+
+{% endblock %}
