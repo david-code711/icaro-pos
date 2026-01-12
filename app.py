@@ -354,7 +354,7 @@ def enviar_ticket_email(destinatario, ticket):
 
 #=====CHATBOT=====
 import google.genai as genai
-GEMINI_API_KEY = "AIzaSyAPXilkwTb7O5D_OogFcRA85sg1EUqJ6aU"
+GEMINI_API_KEY = "AIzaSyDzqH5kNrAwiq_kTb7OY3BOrdzB5yUSozM"
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
 #genai.configure(api_key="AIzaSyAPXilkwTb7O5D_OogFcRA85sg1EUqJ6aU")
